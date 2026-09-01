@@ -25,7 +25,7 @@ public class Plantio extends Acao{
     @Override
     public String toString() {
         return super.toString() +
-                "\nTipo: plantio de Mudas" +
+                "\nTipo: plantio de mudas" +
                 "\nQuantidade de mudas: " + qntMudas;
     }
 }
