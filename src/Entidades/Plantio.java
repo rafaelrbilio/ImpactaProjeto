@@ -26,6 +26,6 @@ public class Plantio extends Acao{
     public String toString() {
         return super.toString() +
                 "\nTipo: plantio de mudas" +
-                "\nquantidade de mudas: " + qntMudas;
+                "\nquantidade das mudas: " + qntMudas;
     }
 }
