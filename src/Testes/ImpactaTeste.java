@@ -25,8 +25,8 @@ public class ImpactaTeste {
     public void deveCadastrarVoluntario() {
 
         boolean resultado = impacta.cadastrarVoluntario(
-                "João",
-                "joao@email.com",
+                "Rafael",
+                "rafael@gmail.com",
                 "001"
         );
 
@@ -38,16 +38,16 @@ public class ImpactaTeste {
     public void naoDevePermitirEmailDuplicado() {
 
         impacta.cadastrarVoluntario(
-                "João",
-                "joao@email.com",
+                "Rafael",
+                "rafael@gmail.com",
                 "001"
         );
 
         assertThrows(
                 EmailJaCadastradoException.class,
                 () -> impacta.cadastrarVoluntario(
-                        "Maria",
-                        "joao@email.com",
+                        "Italo",
+                        "rafael@gmail.com",
                         "002"
                 )
         );
@@ -132,8 +132,8 @@ public class ImpactaTeste {
     public void deveInscreverVoluntario() {
 
         impacta.cadastrarVoluntario(
-                "João",
-                "joao@email.com",
+                "Rafael",
+                "rafael@gmail.com",
                 "001"
         );
 
@@ -147,7 +147,7 @@ public class ImpactaTeste {
 
         boolean resultado =
                 impacta.inscreverVoluntario(
-                        "joao@email.com",
+                        "rafael@gmail.com",
                         idAcao
                 );
 
@@ -159,8 +159,8 @@ public class ImpactaTeste {
     public void naoDevePermitirDuplaInscricao() {
 
         impacta.cadastrarVoluntario(
-                "João",
-                "joao@email.com",
+                "Rafael",
+                "rafael@gmail.com",
                 "001"
         );
 
@@ -173,14 +173,14 @@ public class ImpactaTeste {
         );
 
         impacta.inscreverVoluntario(
-                "joao@email.com",
+                "rafael@gmail.com",
                 idAcao
         );
 
         assertThrows(
                 VoluntarioJaInscritoException.class,
                 () -> impacta.inscreverVoluntario(
-                        "joao@email.com",
+                        "rafael@gmail.com",
                         idAcao
                 )
         );
@@ -191,14 +191,14 @@ public class ImpactaTeste {
     public void naoDevePermitirAcaoLotada() {
 
         impacta.cadastrarVoluntario(
-                "João",
-                "joao@email.com",
+                "Rafael",
+                "rafael@gmail.com",
                 "001"
         );
 
         impacta.cadastrarVoluntario(
-                "Maria",
-                "maria@email.com",
+                "Italo",
+                "italo@gmail.com",
                 "002"
         );
 
@@ -211,14 +211,14 @@ public class ImpactaTeste {
         );
 
         impacta.inscreverVoluntario(
-                "joao@email.com",
+                "rafael@gmail.com",
                 idAcao
         );
 
         assertThrows(
                 AcaoLotadaException.class,
                 () -> impacta.inscreverVoluntario(
-                        "maria@email.com",
+                        "italo@gmail.com",
                         idAcao
                 )
         );
@@ -229,20 +229,20 @@ public class ImpactaTeste {
     public void deveOrdenarVoluntariosPorPontuacao() {
 
         impacta.cadastrarVoluntario(
-                "Carlos",
-                "carlos@email.com",
+                "Paulo",
+                "paulo@gmail.com",
                 "001"
         );
 
         impacta.cadastrarVoluntario(
-                "Ana",
-                "ana@email.com",
+                "Vinicius",
+                "vinicius@gmail.com",
                 "002"
         );
 
         impacta.cadastrarVoluntario(
-                "Bruno",
-                "bruno@email.com",
+                "Raiff",
+                "raiff@gmail.com",
                 "003"
         );
 
@@ -263,25 +263,25 @@ public class ImpactaTeste {
         );
 
         impacta.inscreverVoluntario(
-                "ana@email.com",
+                "vinicius@email.com",
                 plantio
         );
 
         impacta.inscreverVoluntario(
-                "bruno@email.com",
+                "raiff@gmail.com",
                 plantio
         );
 
         impacta.inscreverVoluntario(
-                "carlos@email.com",
+                "paulo@gmail.com",
                 mutirao
         );
 
         String[] ranking =
                 impacta.listarVoluntarios();
 
-        assertEquals("Ana", ranking[0]);
-        assertEquals("Bruno", ranking[1]);
-        assertEquals("Carlos", ranking[2]);
+        assertEquals("Vinicius", ranking[0]);
+        assertEquals("Raiff", ranking[1]);
+        assertEquals("Paulo", ranking[2]);
     }
 }
