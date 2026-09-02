@@ -2,6 +2,7 @@ package Testes;
 
 import Entidades.Acao;
 import Entidades.Voluntario;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +22,7 @@ class AcaoTest {
     }
 
     @Test
+    @DisplayName("Deve criar a ação corretamente")
     void deveCriarAcaoCorretamente() {
         Acao acao = new AcaoTeste(1, "Plantio de Árvores", "Ação de plantio de árvores", "10/09/2026", 10);
         assertEquals(1, acao.getId());
@@ -33,12 +35,14 @@ class AcaoTest {
     }
 
     @Test
+    @DisplayName("Deve calcular a pontuação")
     void deveCalcularPontuacao() {
         Acao acao = new AcaoTeste(1, "Plantio de Árvores", "Ação de plantio", "10/09/2026", 10);
         assertEquals(10, acao.calcularPontuacao());
     }
 
     @Test
+    @DisplayName("Deve adicionar um voluntário")
     void deveAdicionarVoluntario() {
         Acao acao = new AcaoTeste(1, "Plantio de Árvores", "Ação de plantio", "10/09/2026", 10);
         Voluntario voluntario = new Voluntario("Paulo", "paulo@email.com", "20260001");
@@ -49,6 +53,7 @@ class AcaoTest {
     }
 
     @Test
+    @DisplayName("Não deve adicionar o mesmo voluntário duas vezes")
     void naoDeveAdicionarMesmoVoluntarioDuasVezes() {
         Acao acao = new AcaoTeste(1, "Plantio de Árvores", "Ação de plantio", "10/09/2026", 10);
         Voluntario voluntario = new Voluntario("Paulo", "paulo@email.com", "20260001"
@@ -59,6 +64,7 @@ class AcaoTest {
     }
 
     @Test
+    @DisplayName("Não deve ultrapassar o limite de participantes")
     void naoDeveUltrapassarLimiteDeParticipantes() {
         Acao acao = new AcaoTeste(1, "Plantio de Árvores", "Ação de plantio", "10/09/2026", 1);
 
