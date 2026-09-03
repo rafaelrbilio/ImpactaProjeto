@@ -229,20 +229,20 @@ public class ImpactaTeste {
     public void deveOrdenarVoluntariosPorPontuacao() {
 
         impacta.cadastrarVoluntario(
-                "Paulo",
-                "paulo@gmail.com",
+                "Vinicius",
+                "vinicius@email.com",
                 "001"
         );
 
         impacta.cadastrarVoluntario(
-                "Vinicius",
-                "vinicius@gmail.com",
+                "Raiff",
+                "raiff@email.com",
                 "002"
         );
 
         impacta.cadastrarVoluntario(
-                "Raiff",
-                "raiff@gmail.com",
+                "Paulo",
+                "paulo@email.com",
                 "003"
         );
 
@@ -268,20 +268,17 @@ public class ImpactaTeste {
         );
 
         impacta.inscreverVoluntario(
-                "raiff@gmail.com",
+                "raiff@email.com",
                 plantio
         );
 
         impacta.inscreverVoluntario(
-                "paulo@gmail.com",
+                "paulo@email.com",
                 mutirao
         );
 
-        String[] ranking =
-                impacta.listarVoluntarios();
-
-        assertEquals("Vinicius", ranking[0]);
-        assertEquals("Raiff", ranking[1]);
-        assertEquals("Paulo", ranking[2]);
+        assertEquals("Vinicius", impacta.listarVoluntarios()[0]);
+        assertEquals("Raiff", impacta.listarVoluntarios()[1]);
+        assertEquals("Paulo", impacta.listarVoluntarios()[2]);
     }
 }

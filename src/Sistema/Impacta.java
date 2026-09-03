@@ -11,7 +11,6 @@ import Execoes.EmailJaCadastradoException;
 import Execoes.VoluntarioJaInscritoException;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Impacta {
 
@@ -24,10 +23,6 @@ public class Impacta {
         acoes = new ArrayList<>();
         proximoId = 1;
     }
-
-    // ==========================================
-    // CADASTRAR VOLUNTÁRIO
-    // ==========================================
 
     public boolean cadastrarVoluntario(
             String nome,
@@ -52,10 +47,6 @@ public class Impacta {
         return true;
     }
 
-    // ==========================================
-    // EXIBIR VOLUNTÁRIO
-    // ==========================================
-
     public String exibirVoluntario(String email) {
 
         for (Voluntario voluntario : voluntarios) {
@@ -69,34 +60,31 @@ public class Impacta {
         return null;
     }
 
-    // ==========================================
-    // LISTAR VOLUNTÁRIOS
-    // ==========================================
-
     public String[] listarVoluntarios() {
 
-        voluntarios.sort(
-                Comparator
-                        .comparingInt(Voluntario::getPontuacao)
-                        .reversed()
-                        .thenComparing(Voluntario::getNome)
-        );
+        ArrayList<Voluntario> ordenados = new ArrayList<>(voluntarios);
 
-        String[] resultado =
-                new String[voluntarios.size()];
+        for (int i = 0; i < ordenados.size() - 1; i++) {
+            for (int j = i + 1; j < ordenados.size(); j++) {
 
-        for (int i = 0; i < voluntarios.size(); i++) {
+                if (ordenados.get(j).getPontuacao()
+                        > ordenados.get(i).getPontuacao()) {
 
-            resultado[i] =
-                    voluntarios.get(i).getNome();
+                    Voluntario aux = ordenados.get(i);
+                    ordenados.set(i, ordenados.get(j));
+                    ordenados.set(j, aux);
+                }
+            }
+        }
+
+        String[] resultado = new String[ordenados.size()];
+
+        for (int i = 0; i < ordenados.size(); i++) {
+            resultado[i] = ordenados.get(i).getNome();
         }
 
         return resultado;
     }
-
-    // ==========================================
-    // CADASTRAR PLANTIO
-    // ==========================================
 
     public int cadastrarPlantio(
             String titulo,
@@ -123,10 +111,6 @@ public class Impacta {
         return id;
     }
 
-    // ==========================================
-    // CADASTRAR MUTIRÃO
-    // ==========================================
-
     public int cadastrarMutirao(
             String titulo,
             String descricao,
@@ -152,10 +136,6 @@ public class Impacta {
 
         return id;
     }
-
-    // ==========================================
-    // CADASTRAR OFICINA
-    // ==========================================
 
     public int cadastrarOficina(
             String titulo,
@@ -185,10 +165,6 @@ public class Impacta {
         return id;
     }
 
-    // ==========================================
-    // INSCREVER VOLUNTÁRIO
-    // ==========================================
-
     public boolean inscreverVoluntario(
             String emailVoluntario,
             int idAcao) {
@@ -196,7 +172,6 @@ public class Impacta {
         Voluntario voluntarioEncontrado = null;
         Acao acaoEncontrada = null;
 
-        // Procurar voluntário pelo e-mail
         for (Voluntario voluntario : voluntarios) {
 
             if (voluntario.getEmail()
@@ -207,7 +182,6 @@ public class Impacta {
             }
         }
 
-        // Procurar ação pelo ID
         for (Acao acao : acoes) {
 
             if (acao.getId() == idAcao) {
@@ -217,17 +191,14 @@ public class Impacta {
             }
         }
 
-        // Voluntário não encontrado
         if (voluntarioEncontrado == null) {
             return false;
         }
 
-        // Ação não encontrada
         if (acaoEncontrada == null) {
             return false;
         }
 
-        // Verificar inscrição duplicada
         if (acaoEncontrada.getInscritos()
                 .contains(voluntarioEncontrado)) {
 
@@ -236,7 +207,6 @@ public class Impacta {
             );
         }
 
-        // Verificar se a ação está lotada
         if (acaoEncontrada.getInscritos().size()
                 >= acaoEncontrada.getMaxParticipantes()) {
 
@@ -245,22 +215,16 @@ public class Impacta {
             );
         }
 
-        // Adicionar voluntário na ação
         acaoEncontrada.adicionarVoluntario(
                 voluntarioEncontrado
         );
 
-        // Adicionar ação ao voluntário
         voluntarioEncontrado.adicionarAcao(
                 acaoEncontrada
         );
 
         return true;
     }
-
-    // ==========================================
-    // EXIBIR DETALHES DA AÇÃO
-    // ==========================================
 
     public String exibirDetalhesAcao(int idAcao) {
 

@@ -8,6 +8,7 @@ public class Voluntario {
     private String matricula;
     private List<Acao> acoes;
 
+
     public Voluntario(String nome, String email, String matricula) {
         this.nome = nome;
         this.email = email;
@@ -43,6 +44,7 @@ public class Voluntario {
     public List<Acao> getAcoes() {
         return acoes;
     }
+
 
     @Override
     public String toString() {
