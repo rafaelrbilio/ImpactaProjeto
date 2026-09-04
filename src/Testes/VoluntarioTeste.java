@@ -41,7 +41,7 @@ public class VoluntarioTeste {
                 "10/06/2026",
                 20,
                 10
-        ); // 5 + (2*10) = 25
+        );
 
         MutiraoReciclagem mutirao = new MutiraoReciclagem(
                 2,
@@ -50,7 +50,7 @@ public class VoluntarioTeste {
                 "12/06/2026",
                 15,
                 3
-        ); // 3*4 = 12
+        );
 
         OficinaEcologica oficina = new OficinaEcologica(
                 3,
@@ -60,7 +60,7 @@ public class VoluntarioTeste {
                 30,
                 2,
                 true
-        ); // 2*3 + 10 = 16
+        );
 
         voluntario.adicionarAcao(plantio);
         voluntario.adicionarAcao(mutirao);
@@ -85,6 +85,6 @@ public class VoluntarioTeste {
         voluntario.adicionarAcao(plantio);
 
         assertEquals(1, voluntario.getAcoes().size());
-        assertEquals(15, voluntario.getPontuacao()); // 5 + (2*5)
+        assertEquals(15, voluntario.getPontuacao());
     }
 }
